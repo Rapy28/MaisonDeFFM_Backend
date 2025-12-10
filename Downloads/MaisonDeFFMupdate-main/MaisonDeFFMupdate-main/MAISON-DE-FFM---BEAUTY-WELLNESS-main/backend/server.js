@@ -10,6 +10,7 @@ const serviceRoutes = require('./routes/serviceRoutes');
 const promoRoutes = require('./routes/promoRoutes');
 const authRoutes = require('./routes/authRoutes');
 const beauticianRoutes = require('./routes/beauticianRoutes');
+const userRoutes = require('./routes/userRoutes'); // ✅ added
 
 const app = express();
 
@@ -21,7 +22,7 @@ app.use(cors());
 app.use(express.json({ limit: '10mb' }));
 app.use(express.urlencoded({ extended: true }));
 
-// Routes
+// Root route
 app.get('/', (req, res) => {
   res.json({
     message: 'Maison De FFM Beauty Salon API',
@@ -32,6 +33,7 @@ app.get('/', (req, res) => {
       promos: '/api/promos',
       auth: '/api/auth',
       beauticians: '/api/beauticians',
+      users: '/api/users', // ✅ added
     },
   });
 });
@@ -42,6 +44,7 @@ app.use('/api/services', serviceRoutes);
 app.use('/api/promos', promoRoutes);
 app.use('/api/auth', authRoutes);
 app.use('/api/beauticians', beauticianRoutes);
+app.use('/api/users', userRoutes); // ✅ mounted
 
 // Error handling middleware
 app.use((err, req, res, next) => {
